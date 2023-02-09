@@ -1,0 +1,69 @@
+.root{
+    height: 100vh;
+    width: 100vw;
+}
+
+.background{
+    background-image: url('../assets/images/pet-bg.jpg');
+    background-size: contain;
+    height: 100%;
+}
+
+div .content{
+    width: 100vw;
+    height: 100vh;
+}
+
+
+div .login-Modal{
+    background-color: white;
+    float: right;
+    height: 100vh;
+    width: 30vw;
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr;
+}
+
+#img-logo{    
+    margin-top: 30px;
+    width: 200px;
+    padding-left: 30px;
+}
+
+form{
+    display: grid;
+    padding-left: 50px;
+}
+
+label{
+    color: rgb(255, 189, 89);
+    font-weight: 900;
+}
+
+#lbl-email{
+    margin-top: 150px;
+}
+
+#txt-email, #txt-password{
+    
+    border-radius: 5px;
+    background-color: rgba(255, 189, 89, 0.4);
+    border: solid 1px rgb(255, 189, 89);
+    width: 350px;
+    height: 35px;
+}
+
+#btn-login{
+    border-radius: 5px;
+    background-color: #FFBD59;
+    margin-top: 30px;
+    width: 90px;
+    height: 40px;
+    border: solid 1px rgba(255, 189, 89, 0.4);
+}
+
+a{
+    padding-left: 50px;
+    color: #FFBD59;
+    font-weight: 900;
+}

@@ -1,4 +1,6 @@
 import React from 'react';
+import '../Pages/styles.css';
+import logo from '../assets/images/logo-homepet.png';
 
 
 class Login extends React.Component{
@@ -22,22 +24,31 @@ class Login extends React.Component{
 
     render(){
         return(
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        E-mail
-                        <input type="email" value={this.state.value} onChange={this.handleChange}/>
-                    </label>
-                    <label>
-                        Senha
-                        <input type="password"/>
-                    </label>
-                    <input type="button" value="Entrar"></input>
-                </form>
-                <div>
-                    <a href="https://www.google.com">Criar nova conta</a>
+            <div className='root'>
+                <div className='background'>
+                    <div className='login-Modal'>
+                        <img id='img-logo' src={logo}></img>
+                        
+                        <form onSubmit={this.handleSubmit}>
+                            <label id='lbl-email'>
+                                E-mail
+                            </label>
+                            <input id='txt-email' type="email" value={this.state.value} onChange={this.handleChange}/>
+                            <label id='lbl-password'>
+                                Senha
+                            </label>
+                            <input id='txt-password' type="password"/>
+                            <input id='btn-login' type="button" value="Entrar"></input>
+                        </form>
+                        <div>
+                            <a 
+                                id='lbl-create-new-account'
+                                href="https://www.google.com">
+                                    Criar nova conta
+                            </a>
+                        </div>
+                    </div>
                 </div>
-
             </div>
         )
     }
