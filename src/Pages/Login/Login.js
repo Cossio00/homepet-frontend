@@ -1,24 +1,30 @@
 import React from 'react';
-import '../Pages/styles.css';
-import logo from '../assets/images/logo-homepet.png';
+import '../Login/styles.css';
+import logo from '../../assets/images/logo-homepet-peach.png';
+import api from '../../services/api';
 
 
 class Login extends React.Component{
 
     constructor(props){
         super(props);
-        this.state = {value: ''};
+        this.state = {email: '', password: ''};
 
-        this.handleChange = this.handleChange.bind(this);
+        this.handleChangeEmail = this.handleChangeEmail.bind(this);
+        this.handleChangePassword = this.handleChangePassword.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(event){
-        this.setState({value: event.target.value});
+    handleChangePassword(event){
+        this.setState({password: event.target.value});
     }
-
+    
+    handleChangeEmail(event){
+        this.setState({email: event.target.value});
+    }
+    
     handleSubmit(event){
-        alert('Seu email é: '+this.state.value);
+        alert('Seu email é: '+this.state.email);
         event.preventDefault();
     }
 
@@ -29,21 +35,21 @@ class Login extends React.Component{
                     <div className='login-Modal'>
                         <img id='img-logo' src={logo}></img>
                         
-                        <form onSubmit={this.handleSubmit}>
+                        <form className='form-login'>
                             <label id='lbl-email'>
                                 E-mail
                             </label>
-                            <input id='txt-email' type="email" value={this.state.value} onChange={this.handleChange}/>
+                            <input id='txt-email' type="email" value={this.state.email} onChange={this.handleChangeEmail}/>
                             <label id='lbl-password'>
                                 Senha
                             </label>
-                            <input id='txt-password' type="password"/>
-                            <input id='btn-login' type="button" value="Entrar"></input>
+                            <input id='txt-password' type="password" value={this.state.password} onChange={this.handleChangePassword}/>
+                            <input id='btn-login' type="button" value="Entrar" onClick={this.handleSubmit}></input>
                         </form>
                         <div>
                             <a 
                                 id='lbl-create-new-account'
-                                href="https://www.google.com">
+                                href="/create-new-account">
                                     Criar nova conta
                             </a>
                         </div>

@@ -4,7 +4,7 @@
 }
 
 .background{
-    background-image: url('../assets/images/pet-bg.jpg');
+    background-image: url('../../assets/images/pet-bg.jpg');
     background-size: contain;
     height: 100%;
 }
@@ -30,7 +30,7 @@ div .login-Modal{
     padding-left: 30px;
 }
 
-form{
+.form-login{
     display: grid;
     padding-left: 50px;
 }
