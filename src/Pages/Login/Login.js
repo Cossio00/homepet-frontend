@@ -8,6 +8,8 @@ const Login = () =>{
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [invalidUser, setInvalidUser] = useState(false)
+
     let navigate = useNavigate();
 
     
@@ -27,7 +29,10 @@ const Login = () =>{
             localStorage.setItem("x-acess-token", response.data['token']);
             navigate("/home");
         })
-        .catch(err => console.log(err))
+        .catch(
+            err => console.log(err),
+            setInvalidUser(true)
+        )
     }
 
 
@@ -48,6 +53,7 @@ const Login = () =>{
                             <input id='txt-password' type="password" value={password} onChange={handleChangePassword}/>
                             <input id='btn-login' type="button" value="Entrar" onClick={handleSubmit}></input>
                         </form>
+                        {invalidUser ? <a id='lbl-incorrect-data' >Usuário ou senha inválidos! Informe os dados novamente.</a> : <a></a>}
                         <div>
                             <Link
                                 id='lbl-create-new-account'

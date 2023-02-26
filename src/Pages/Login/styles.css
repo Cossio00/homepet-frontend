@@ -21,7 +21,7 @@ div .login-Modal{
     height: 100vh;
     width: 30vw;
     display: grid;
-    grid-template-rows: 1fr 2fr 1fr;
+    grid-template-rows: 1fr 2fr 1fr 1fr;
 }
 
 #img-logo{    
@@ -67,4 +67,11 @@ a{
     padding-left: 50px;
     color: #FFBD59;
     font-weight: 900;
+}
+
+#lbl-incorrect-data{
+    padding-left: 50px;
+    color: red;
+    font-size: 14px;
+    font-weight: 400;
 }
