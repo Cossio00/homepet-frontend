@@ -1,35 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../Login/styles.css';
 import logo from '../../assets/images/logo-homepet-peach.png';
 import api from '../../services/api';
+import { Link, useNavigate } from 'react-router-dom';
 
+const Login = () =>{
 
-class Login extends React.Component{
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    let navigate = useNavigate();
 
-    constructor(props){
-        super(props);
-        this.state = {email: '', password: ''};
-
-        this.handleChangeEmail = this.handleChangeEmail.bind(this);
-        this.handleChangePassword = this.handleChangePassword.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleChangePassword(event){
-        this.setState({password: event.target.value});
+    
+    const handleChangeEmail = event => {
+       setEmail(event.target.value);
     }
     
-    handleChangeEmail(event){
-        this.setState({email: event.target.value});
-    }
-    
-    handleSubmit(event){
-        alert('Seu email é: '+this.state.email);
-        event.preventDefault();
+    const handleChangePassword = event => {
+        setPassword(event.target.value);
     }
 
-    render(){
-        return(
+    const handleSubmit = event => {
+        api.post('/login', {
+            useremail: email,
+            userpassword: password
+        }).then( response =>{
+            localStorage.setItem("x-acess-token", response.data['token']);
+            navigate("/home");
+        })
+        .catch(err => console.log(err))
+    }
+
+
+    return(
             <div className='root'>
                 <div className='background'>
                     <div className='login-Modal'>
@@ -39,25 +41,25 @@ class Login extends React.Component{
                             <label id='lbl-email'>
                                 E-mail
                             </label>
-                            <input id='txt-email' type="email" value={this.state.email} onChange={this.handleChangeEmail}/>
+                            <input id='txt-email' type="email" value={email} onChange={handleChangeEmail}/>
                             <label id='lbl-password'>
                                 Senha
                             </label>
-                            <input id='txt-password' type="password" value={this.state.password} onChange={this.handleChangePassword}/>
-                            <input id='btn-login' type="button" value="Entrar" onClick={this.handleSubmit}></input>
+                            <input id='txt-password' type="password" value={password} onChange={handleChangePassword}/>
+                            <input id='btn-login' type="button" value="Entrar" onClick={handleSubmit}></input>
                         </form>
                         <div>
-                            <a 
+                            <Link
                                 id='lbl-create-new-account'
-                                href="/create-new-account">
+                                to={`/create-new-account`}>
                                     Criar nova conta
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>
             </div>
         )
-    }
+    
 }
 
 export default Login;
