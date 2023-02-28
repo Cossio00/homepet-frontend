@@ -63,7 +63,7 @@ label{
     cursor: pointer;
 }
 
-a{
+#lbl-create-new-account{
     padding-left: 50px;
     color: #FFBD59;
     font-weight: 900;

@@ -54,7 +54,8 @@ const Login = () =>{
                 useremail: email,
                 userpassword: password
             }).then( response =>{
-                localStorage.setItem("x-acess-token", response.data['token']);
+                localStorage.setItem("x-access-token", response.data['token']);
+                localStorage.setItem("userid", response.data['userid']);
                 navigate("/home");
             })
             .catch(
@@ -94,7 +95,7 @@ const Login = () =>{
                         <div>
                             <Link
                                 id='lbl-create-new-account'
-                                to={`/create-new-account`}>
+                                to={`/create-new-account`} >
                                     Criar nova conta
                             </Link>
                         </div>

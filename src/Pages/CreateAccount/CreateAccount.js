@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../CreateAccount/styles.css';
 import logo from '../../assets/images/logo-homepet-gray.png';
 import api from '../../services/api';
+import { useNavigate } from 'react-router-dom';
 
 const CreateAccount = () =>{
 
@@ -55,7 +56,7 @@ const CreateAccount = () =>{
                 useremail: useremail,
                 userpassword: userpassword
             }).then(response =>{
-                console.log(response.statusText)
+                alert("Usuário criado com sucesso!");
             })
             .catch(
                 err => {
