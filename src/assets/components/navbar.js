@@ -2,11 +2,13 @@ import React from 'react';
 import '../components/styles.css';
 
 import logo from '../../assets/images/logo-homepet-white.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import api from '../../services/api';
 
 const NavBar = () => {
 
+
+    const navigate = useNavigate();
 
     function logout(){
         api.post("/logout")
@@ -19,7 +21,11 @@ const NavBar = () => {
 
     return(
         <div className='header'>
-            <img id = 'img-logo-header' src={logo}></img>
+            <img id = 'img-logo-header' src={logo} onClick={()=>navigate("/home")}></img>
+            <Link 
+            to="/account"
+            id="lbl-my-account">
+                Minha Conta</Link>
             <Link 
             to="/"
             id="lbl-exit"

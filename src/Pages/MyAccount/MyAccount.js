@@ -14,11 +14,12 @@ const MyAccount = () =>{
     const [useraddress, setUserAddress] = useState('');
     const [usertype, setUserType] = useState(2);
     const [isCaregiver, setIsCaregiver] = useState(false);
-    
+    const [myservices, setMyServices] = useState([]);
+
     const userid = localStorage.getItem('userid')
     const token = localStorage.getItem('x-access-token')
     
-    let navigate = useNavigate();
+    const navigate = useNavigate();
 
     async function loadMyUser(){
         await api.get(`/user/${userid}`, {headers: {"x-access-token": token}})
@@ -45,6 +46,14 @@ const MyAccount = () =>{
         );
     }
 
+    async function loadMyServices(){
+        await api.get(`/my-services`, {headers: {"x-access-token": token}})
+        .then(response => {
+            let data = response.data
+            setMyServices(data)
+        })
+    }
+
     const validateFields = (username, usercpf, userphone, useraddress) =>{
         if (username === '' || usercpf === '' || userphone === '' || useraddress === ''){
             return false;
@@ -53,8 +62,10 @@ const MyAccount = () =>{
     }
 
     useEffect(() => {
-        loadMyUser();  
+        loadMyUser();
+        loadMyServices();  
     }, [])
+
     const [invalidDataText, setInvalidDataText] = useState('');
     const [isDataInvalid, setIsDataInvalid] = useState(false);
 
@@ -75,6 +86,13 @@ const MyAccount = () =>{
 
     const handleChangeUserAddress = event =>{
         setUserAddress(event.target.value);
+    }
+
+    function handleServiceDetails(event, id){
+        event.preventDefault();
+        console.log(id)
+        navigate('/my-service', {state: `${id}`})
+
     }
 
     const handleSubmit = event => {
@@ -139,6 +157,19 @@ const MyAccount = () =>{
                     </form>
                     {isDataInvalid ? <a id='lbl-invalid-data'>{invalidDataText}</a> : <a></a>}
                 </div>
+                {isCaregiver? 
+                    <div className='my-services-modal'>
+                        <input id='btn-create-service' type="button" value="Criar novo serviço" onClick={()=>navigate('/create-new-service')}></input>
+                        <div className='edit-service-modal'>
+                            {myservices.map( myservice => 
+                                <div key={myservice.serviceid} className='service-item' onClick={event => handleServiceDetails(event, myservice.serviceid)}>
+                                    <h1>{myservice.servicesummary}</h1>
+                                    <a>{myservice.servicedescription}</a>
+                                </div>
+                            )}
+                        </div>
+                    </div> : <div></div>
+                    }
             </div>
         </>
     )

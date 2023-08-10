@@ -2,12 +2,29 @@
     width: 100vw;
     background-color: rgb(255, 255, 255);
     display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 .edit-account-modal{
     display: grid;
     padding-left: 50px;
+    grid-template-rows: 15vh 55vh;
 }
+
+.edit-service-modal{
+    display: grid;
+    padding-left: 50px;
+    margin-top: 5vh;
+}
+
+.service-item{
+    cursor: pointer;
+    padding-left: 10px;
+    margin: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
 
 form{
     display: grid;
@@ -17,12 +34,25 @@ form{
     margin-top: 5px;
 }
 
+.form-edit-service > label{
+    margin-top: 5px;
+}
+
 .form-edit-account > input{
     border-radius: 5px;
     background-color: rgba(255, 189, 89, 0.4);
     border: solid 1px rgb(255, 189, 89);
     height: 35px;
     width: 450px;
+    margin-bottom: 5px;
+}
+
+.form-edit-account #ddl-edit-category{
+    border-radius: 5px;
+    background-color: rgba(255, 189, 89, 0.4);
+    border: solid 1px rgb(255, 189, 89);
+    height: 35px;
+    width: 455px;
     margin-bottom: 5px;
 }
 
@@ -49,4 +79,30 @@ form{
     height: 40px;
     border: solid 1px rgba(255, 189, 89, 0.4);
     cursor: pointer;
+}
+
+.service-item{
+    width: 750px;
+    height: 200px;
+    border: #FFBD59 solid 2px;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+#btn-create-service{
+    border-radius: 5px;
+    background-color: #63b512;;
+    margin-top: 30px;
+    color:rgb(255, 255, 255);
+    width: 200px;
+    height: 70px;
+    font-size: 20px;
+    border: solid 1px rgba(255, 189, 89, 0.4);
+    cursor: pointer;
+    border-radius: 10px;
+    margin-left: 50px;
+    
 }
